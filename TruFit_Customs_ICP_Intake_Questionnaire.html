@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TruFit Customs · ICP Intake Questionnaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-soft: #142540;
+    --cream: #f2ebdd;
+    --cream-soft: #f7f1e6;
+    --coral: #e85c5c;
+    --coral-soft: #f08585;
+    --ink: #1a1a1a;
+    --muted: #555555;
+    --rule: #d8d2c4;
+    --card: #ffffff;
+    --shadow: 0 1px 2px rgba(10, 22, 40, 0.04), 0 12px 40px rgba(10, 22, 40, 0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(232, 92, 92, 0.04), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(10, 22, 40, 0.03), transparent 40%);
+    min-height: 100vh;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 32px 240px;
+  }
+
+  /* ============ HEADER ============ */
+  header.hero { margin-bottom: 52px; }
+
+  .kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  header.hero h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(38px, 6vw, 60px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  header.hero .lede {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 62ch;
+    margin-bottom: 8px;
+  }
+
+  header.hero .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ PROGRESS BAR ============ */
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(242, 235, 221, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    margin: 0 -32px 0;
+    padding: 14px 32px;
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(10, 22, 40, 0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--coral), var(--coral-soft));
+    border-radius: 100px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ============ SECTION ============ */
+  .section { margin-top: 56px; scroll-margin-top: 80px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .section-num {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--coral);
+    font-variant-numeric: tabular-nums;
+  }
+  .section-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .section-note {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 14px 0 4px;
+    font-style: italic;
+  }
+
+  /* ============ QUESTION ============ */
+  .q {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-top: 18px;
+    box-shadow: var(--shadow);
+    transition: border-left-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .q.answered { border-left-color: var(--coral); }
+
+  .q-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .q-num {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--coral);
+    background: rgba(232, 92, 92, 0.1);
+    border-radius: 6px;
+    padding: 2px 7px;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .q-check {
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--rule);
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+  }
+  .q.answered .q-check {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+  .q-check svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.3s ease; }
+  .q.answered .q-check svg { opacity: 1; }
+
+  .q-hint {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 6px 0 14px 0;
+    line-height: 1.5;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--cream-soft);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 12px 14px;
+    resize: vertical;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  textarea { min-height: 92px; }
+  textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--coral);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(232, 92, 92, 0.1);
+  }
+
+  /* ============ SECTION NAV DOTS ============ */
+  .nav-rail {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .nav-dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .nav-dot.active { background: var(--coral); border-color: var(--coral); transform: scale(1.3); }
+  .nav-dot:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--navy);
+    color: var(--cream);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  /* ============ FOOTER / EXPORT ============ */
+  .footer-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 50;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 16px 32px;
+    box-shadow: 0 -8px 30px rgba(10, 22, 40, 0.18);
+  }
+  .footer-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .footer-status {
+    font-size: 13px;
+    color: var(--cream);
+    opacity: 0.85;
+    flex: 1;
+    min-width: 180px;
+  }
+  .footer-status strong { color: #fff; opacity: 1; }
+  .btn {
+    font-family: "DM Sans", sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--coral); color: #fff; }
+  .btn-primary:hover { background: var(--coral-soft); }
+  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid rgba(242, 235, 221, 0.3); }
+  .btn-ghost:hover { background: rgba(242, 235, 221, 0.1); }
+
+  .saved-flash {
+    font-size: 12px;
+    color: var(--coral-soft);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .saved-flash.show { opacity: 1; }
+
+  .btn-submit-success { background: #2a9d5c !important; }
+  .btn-submit-error   { background: #b94040 !important; }
+  .btn[disabled]      { opacity: 0.7; cursor: not-allowed; }
+
+  #submitOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10, 22, 40, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+  }
+  #submitOverlay.show { display: flex; }
+  .overlay-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 48px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(10,22,40,0.22);
+  }
+  .overlay-card h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .overlay-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .overlay-card .icon { font-size: 48px; margin-bottom: 16px; }
+  .overlay-close {
+    margin-top: 24px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--coral);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 720px) {
+    main { padding: 40px 20px 220px; }
+    .nav-rail { display: none; }
+    .progress-wrap { margin: 0 -20px; padding: 12px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 of 26 answered</div>
+  </div>
+</div>
+
+<nav class="nav-rail" id="navRail"></nav>
+
+<main>
+  <header class="hero">
+    <div class="kicker">Dream Giant · Client Intake</div>
+    <h1>TruFit Customs<br>ICP Discovery</h1>
+    <p class="lede">This builds your target list for the email campaign. Every answer becomes a filter, a title string, or a qualification rule, so specifics beat generalities every time. <strong>Give us numbers, named examples, and the literal words wherever you can.</strong> Answers save automatically as you go.</p>
+    <p class="lede" style="font-size:14.5px;">Roughly 20 to 30 minutes. You can stop and return anytime on this device.</p>
+  </header>
+
+  <!-- SECTION 1 -->
+  <section class="section" id="sec-1" data-label="Channel Priority">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <span class="section-title">Channel Priority</span>
+    </div>
+    <p class="section-note">You run a mouthguard program through orthodontists and you're exploring amateur leagues, tournaments, and clubs as affiliate partners. The email campaign needs to know which list to build first and how each model defines the buyer.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">01</span><span>Which channel should the email campaign hit first, orthodontic practices or amateur sports affiliates, and what split of effort? (e.g. 70/30 ortho)</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Decides which list we build and send to first. A rough percentage is fine.</p>
+      <textarea data-q="1" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">02</span><span>In one or two sentences each: who is the buyer in the ortho model, and who is the buyer in the affiliate model? Name the role that signs off.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">This is the person we put in the send list, so be precise about the role.</p>
+      <textarea data-q="2" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="section" id="sec-2" data-label="Account Profile">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">The Account Profile</span>
+    </div>
+    <p class="section-note">What a qualified company looks like. Every answer here becomes a filter. Give numbers and named examples.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">03</span><span>Name 5 to 10 real orthodontic practices or groups that are perfect fits, current partners or dream targets. List them.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Named accounts are the seed we reverse-engineer the whole list from. Even just practice names and cities.</p>
+      <textarea data-q="3" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">04</span><span>What size practice qualifies? Give a number: chairs, doctors, locations, or staff count. Where's the floor and ceiling?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We filter on employee/location count directly, so a range beats "small to mid-size."</p>
+      <textarea data-q="4" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">05</span><span>Single-location practices, multi-location groups, or DSOs, which converts best, and do you want all three in the list or just one?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Independent practice and DSO are two different list builds with different titles.</p>
+      <textarea data-q="5" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">06</span><span>Does the practice need a specific scanner (iTero, Medit, others) or to be a digital/Invisalign provider for your program to work?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">If yes, this is the single strongest qualifier and we hunt for it specifically.</p>
+      <textarea data-q="6" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">07</span><span>For the affiliate side, what org types and sports qualify? Rank them, and give a size floor (min players, families, or event participants).</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Hockey, lacrosse, rugby, wrestling, BJJ, football. Which buy, and how big to be worth a send?</p>
+      <textarea data-q="7" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">08</span><span>Name 5 to 10 real leagues, clubs, tournaments, or circuits that would be ideal affiliate partners.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Named orgs let us find the lookalikes. Wins, losses, and dream targets all count.</p>
+      <textarea data-q="8" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">09</span><span>Geography: which states or metros should we prioritize, and are any off-limits? Same answer or different for each channel?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">A location filter sharpens the list and the send volume per region.</p>
+      <textarea data-q="9" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="section" id="sec-3" data-label="Contact Profile">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">The Contact Profile</span>
+    </div>
+    <p class="section-note">The exact person who receives the email. This determines who lands in the campaign, by literal title.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">10</span><span>List the exact job titles to email at an orthodontic practice. The literal words on LinkedIn or their email signature.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We match these title strings directly. Owner, Orthodontist, Practice Manager, etc.</p>
+      <textarea data-q="10" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">11</span><span>List the exact titles to email at an amateur sports org. These orgs have messy titles, so give us every variant you've seen.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">President, Director, Tournament Director, Sponsorship Lead, volunteer roles, anything.</p>
+      <textarea data-q="11" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">12</span><span>Is there a gatekeeper we'll hit before the decision-maker? Who, and is it better to email them or go around?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Office managers and front-desk staff can route or block. Tells us who to actually send to.</p>
+      <textarea data-q="12" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">13</span><span>For DSOs or multi-location groups, does the decision sit at the practice or move up to a regional/corporate title? Name it.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Determines whether we email the office or the corporate entity.</p>
+      <textarea data-q="13" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="section" id="sec-4" data-label="Qualifying Signals">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">Qualifying Signals</span>
+    </div>
+    <p class="section-note">The public tells that an account is ready right now. We score the list on these so the best-fit accounts get emailed first.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">14</span><span>Think about your last few wins. What was true about that practice or org right before they said yes?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">The event before the yes is the trigger we score the whole list against.</p>
+      <textarea data-q="14" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">15</span><span>What would you Google or check to know an ortho practice is a hot prospect today? Be literal about what you'd look for.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">New scanner, new location, new associate, sports-family marketing, elective-services push.</p>
+      <textarea data-q="15" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">16</span><span>For amateur orgs, what timing windows or signals mean buy now? Registration season, tournament dates, a sponsor hunt?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Timing drives send timing. We want the email to land in the registration window.</p>
+      <textarea data-q="16" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">17</span><span>If you had to rank your top 3 qualifying signals across both channels, most predictive first, what are they?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Sets the scoring weights so the highest-intent accounts get sent to first.</p>
+      <textarea data-q="17" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section class="section" id="sec-5" data-label="Disqualifiers">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-title">Disqualifiers &amp; Exclusions</span>
+    </div>
+    <p class="section-note">Who to keep out of the campaign. Exclusions protect deliverability and save credits, so be blunt.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">18</span><span>Which practices look like a fit on paper but never convert or never reorder? Describe the pattern.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Anti-ICP. These become hard exclusion rules in the list build.</p>
+      <textarea data-q="18" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">19</span><span>Which amateur orgs are not worth emailing? Too small, wrong sport, no audience, no budget for it to matter?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Keeps the affiliate list from filling up with dead rec leagues.</p>
+      <textarea data-q="19" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">20</span><span>Any accounts, brands, or partners we must exclude? Existing customers, current partners, anyone off-limits or conflicted.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We suppress these so no one gets a cold email who shouldn't.</p>
+      <textarea data-q="20" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section class="section" id="sec-6" data-label="Sourcing & Reachability">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-title">Sourcing &amp; Email Reachability</span>
+    </div>
+    <p class="section-note">Where these accounts cluster, and whether we can actually email them at volume. This makes or breaks a heavy campaign.</p>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">21</span><span>Where do these practices and orgs cluster? Directories, associations, platforms, lists, anywhere you'd look manually.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">AAO, state dental boards, Invisalign provider finder, USA Hockey, US Lacrosse, IBJJF, registration platforms.</p>
+      <textarea data-q="21" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">22</span><span>For the contacts you want, do they typically have a findable business email, or just a generic info@ / front-desk inbox?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Critical for a heavy send. Solo practices and youth-club volunteers often have no individual email, which changes the whole approach.</p>
+      <textarea data-q="22" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">23</span><span>Is a personal email (Gmail/Yahoo) acceptable to send to for these contacts, or do you only want verified business emails?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Many small-org decision-makers only have a personal address. Affects deliverability strategy and list size.</p>
+      <textarea data-q="23" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">24</span><span>Roughly how many qualified accounts exist in each channel? Your gut on total addressable count is fine.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Tells us whether this is a tight high-personalization send or a broad volume campaign.</p>
+      <textarea data-q="24" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">25</span><span>What one or two data points, if we had them on every account, would make you trust the list most? (e.g. confirmed scanner, roster size)</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Tells us which enrichment to prioritize in Clay before a single email goes out.</p>
+      <textarea data-q="25" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">26</span><span>Anything we didn't ask that we'd regret not knowing before building the list?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Open floor. The thing you know that we don't.</p>
+      <textarea data-q="26" placeholder="Your answer..."></textarea>
+    </div>
+  </section>
+</main>
+
+<div id="submitOverlay">
+  <div class="overlay-card">
+    <div class="icon" id="overlayIcon">⏳</div>
+    <h2 id="overlayTitle">Submitting…</h2>
+    <p id="overlayMsg">Sending your answers to Google Sheets, please wait.</p>
+    <span class="overlay-close" id="overlayClose" style="display:none" onclick="document.getElementById('submitOverlay').classList.remove('show')">Close</span>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <div class="footer-inner">
+    <div class="footer-status">
+      <strong id="footerCount">0 of 26</strong> answered · <span class="saved-flash" id="savedFlash">saved ✓</span>
+    </div>
+    <button class="btn btn-ghost" id="clearBtn">Clear all</button>
+    <button class="btn btn-ghost" id="txtBtn">Download answers</button>
+    <button class="btn btn-primary" id="submitBtn">Submit to Google Sheets</button>
+  </div>
+</div>
+
+<script>
+  const TOTAL = 26;
+  const STORAGE_KEY = "trufit_icp_intake_v1";
+  const textareas = Array.from(document.querySelectorAll("textarea[data-q]"));
+  const sections = Array.from(document.querySelectorAll(".section"));
+
+  // ---- Build nav rail ----
+  const navRail = document.getElementById("navRail");
+  sections.forEach((sec, i) => {
+    const dot = document.createElement("button");
+    dot.className = "nav-dot";
+    dot.dataset.label = sec.dataset.label;
+    dot.addEventListener("click", () => sec.scrollIntoView({ behavior: "smooth", block: "start" }));
+    navRail.appendChild(dot);
+  });
+  const dots = Array.from(navRail.children);
+
+  // ---- Load saved ----
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (e) { saved = {}; }
+  textareas.forEach(t => {
+    const k = t.dataset.q;
+    if (saved[k]) { t.value = saved[k]; markAnswered(t); }
+  });
+
+  function markAnswered(t) {
+    const card = t.closest(".q");
+    if (t.value.trim().length > 0) card.classList.add("answered");
+    else card.classList.remove("answered");
+  }
+
+  function countAnswered() {
+    return textareas.filter(t => t.value.trim().length > 0).length;
+  }
+
+  function updateProgress() {
+    const n = countAnswered();
+    const pct = Math.round((n / TOTAL) * 100);
+    document.getElementById("progressFill").style.width = pct + "%";
+    document.getElementById("progressLabel").textContent = n + " of " + TOTAL + " answered";
+    document.getElementById("footerCount").textContent = n + " of " + TOTAL;
+  }
+
+  let saveTimer = null;
+  function persist() {
+    const data = {};
+    textareas.forEach(t => { if (t.value.trim()) data[t.dataset.q] = t.value; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    const flash = document.getElementById("savedFlash");
+    flash.classList.add("show");
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => flash.classList.remove("show"), 1200);
+  }
+
+  textareas.forEach(t => {
+    t.addEventListener("input", () => {
+      markAnswered(t);
+      updateProgress();
+      persist();
+    });
+    // Cmd/Ctrl+Enter jumps to next field
+    t.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        const idx = textareas.indexOf(t);
+        if (idx < textareas.length - 1) textareas[idx + 1].focus();
+      }
+    });
+  });
+
+  // ---- Active section dot on scroll ----
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const i = sections.indexOf(entry.target);
+        dots.forEach((d, di) => d.classList.toggle("active", di === i));
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  sections.forEach(s => observer.observe(s));
+
+  // ---- Export helpers ----
+  const QUESTIONS = textareas.map(t => {
+    const label = t.closest(".q").querySelector(".q-label span:nth-child(2)").textContent.trim();
+    return { q: t.dataset.q, label, ta: t };
+  });
+
+  const SECTION_TITLES = sections.map(s => s.querySelector(".section-title").textContent.trim());
+
+  function buildText() {
+    let out = "TRUFIT CUSTOMS, ICP DISCOVERY QUESTIONNAIRE\n";
+    out += "Prepared for Dream Giant\n";
+    out += "Completed: " + new Date().toLocaleString() + "\n";
+    out += "Answered: " + countAnswered() + " of " + TOTAL + "\n";
+    out += "=".repeat(60) + "\n\n";
+    let qi = 0;
+    sections.forEach((sec, si) => {
+      out += "\n" + SECTION_TITLES[si].toUpperCase() + "\n" + "-".repeat(40) + "\n\n";
+      const secTAs = Array.from(sec.querySelectorAll("textarea[data-q]"));
+      secTAs.forEach(t => {
+        const label = t.closest(".q").querySelector(".q-label span:nth-child(2)").textContent.trim();
+        out += "Q" + t.dataset.q + ". " + label + "\n";
+        out += (t.value.trim() ? t.value.trim() : "[no answer]") + "\n\n";
+      });
+    });
+    return out;
+  }
+
+  function download(filename, content, type) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById("txtBtn").addEventListener("click", () => {
+    download("TruFit_ICP_Questionnaire_Answers.txt", buildText(), "text/plain");
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    if (!confirm("Clear all answers on this device? This cannot be undone.")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    textareas.forEach(t => { t.value = ""; markAnswered(t); });
+    updateProgress();
+  });
+
+  // ---- Google Sheets submission ----
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvrQCg4DkOGHqksUz8vhoVNFI31mYvuK9cSeF9bFlhoMJPfPP__FqoZgGrnRzVwqG5/exec";
+
+  function buildSheetData() {
+    const data = { "_Submitted": new Date().toLocaleString(), "_Answered": countAnswered() + " of " + TOTAL };
+    QUESTIONS.forEach(q => {
+      const key = "Q" + String(q.q).padStart(2, "0") + " – " + q.label;
+      data[key] = q.ta.value.trim() || "[no answer]";
+    });
+    return data;
+  }
+
+  function showOverlay(icon, title, msg, allowClose) {
+    document.getElementById("overlayIcon").textContent = icon;
+    document.getElementById("overlayTitle").textContent = title;
+    document.getElementById("overlayMsg").textContent = msg;
+    document.getElementById("overlayClose").style.display = allowClose ? "inline-block" : "none";
+    document.getElementById("submitOverlay").classList.add("show");
+  }
+
+  document.getElementById("submitBtn").addEventListener("click", async () => {
+    const answered = countAnswered();
+    if (answered === 0) { alert("Please answer at least one question before submitting."); return; }
+    if (answered < TOTAL) {
+      const go = confirm(answered + " of " + TOTAL + " questions answered. Submit anyway?");
+      if (!go) return;
+    }
+
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+    showOverlay("⏳", "Submitting…", "Sending your answers to Google Sheets, please wait.", false);
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(buildSheetData())
+      });
+      showOverlay("✅", "Submitted!", "Your answers have been sent to Google Sheets. Thank you!", true);
+      submitBtn.textContent = "✓ Submitted";
+      submitBtn.classList.add("btn-submit-success");
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit again";
+        submitBtn.classList.remove("btn-submit-success");
+      }, 6000);
+    } catch (err) {
+      showOverlay("❌", "Submission failed", "Network error. Please check your connection and try again. Your answers are still saved locally — use 'Download answers' as a backup.", true);
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Retry";
+      submitBtn.classList.add("btn-submit-error");
+      setTimeout(() => {
+        submitBtn.classList.remove("btn-submit-error");
+        submitBtn.textContent = "Submit to Google Sheets";
+      }, 4000);
+    }
+  });
+
+  updateProgress();
+</script>
+</body>
+</html>
