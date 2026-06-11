@@ -613,7 +613,7 @@
     </div>
     <button class="btn btn-ghost" id="clearBtn">Clear all</button>
     <button class="btn btn-ghost" id="txtBtn">Download answers</button>
-    <button class="btn btn-primary" id="submitBtn">Submit to Google Sheets</button>
+    <button class="btn btn-primary" id="submitBtn">Submit</button>
   </div>
 </div>
 
@@ -801,7 +801,7 @@
       submitBtn.classList.add("btn-submit-error");
       setTimeout(() => {
         submitBtn.classList.remove("btn-submit-error");
-        submitBtn.textContent = "Submit to Google Sheets";
+        submitBtn.textContent = "Submit";
       }, 4000);
     }
   });
