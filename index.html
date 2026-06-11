@@ -314,6 +314,24 @@
   }
   .saved-flash.show { opacity: 1; }
 
+  /* ============ RESUME BANNER ============ */
+  .resume-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 12px;
+    border-left: 3px solid var(--coral);
+    padding: 18px 22px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow);
+  }
+  .resume-text { flex: 1; min-width: 220px; font-size: 14.5px; line-height: 1.5; }
+  .resume-text strong { color: #fff; }
+  .resume-text #resumeProgress { color: var(--coral-soft); font-weight: 600; }
+
   .btn-submit-success { background: #2a9d5c !important; }
   .btn-submit-error   { background: #b94040 !important; }
   .btn[disabled]      { opacity: 0.7; cursor: not-allowed; }
@@ -372,7 +390,7 @@
 <div class="progress-wrap">
   <div class="progress-inner">
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-label" id="progressLabel">0 of 26 answered</div>
+    <div class="progress-label" id="progressLabel">0 of 23 answered</div>
   </div>
 </div>
 
@@ -386,23 +404,30 @@
     <p class="lede" style="font-size:14.5px;">Roughly 20 to 30 minutes. You can stop and return anytime on this device.</p>
   </header>
 
+  <div class="resume-banner" id="resumeBanner" hidden>
+    <div class="resume-text">
+      <strong>Welcome back.</strong> <span id="resumeProgress"></span> Your answers are saved on this device.
+    </div>
+    <button class="btn btn-primary" id="resumeBtn">Resume where you left off</button>
+  </div>
+
   <!-- SECTION 1 -->
-  <section class="section" id="sec-1" data-label="Channel Priority">
+  <section class="section" id="sec-1" data-label="The Program">
     <div class="section-head">
       <span class="section-num">01</span>
-      <span class="section-title">Channel Priority</span>
+      <span class="section-title">The Program</span>
     </div>
-    <p class="section-note">You run a mouthguard program through orthodontists and you're exploring amateur leagues, tournaments, and clubs as affiliate partners. The email campaign needs to know which list to build first and how each model defines the buyer.</p>
+    <p class="section-note">You run your custom mouthguard program through orthodontic practices. Before we build the list, we need the mechanics exactly right, because they decide who the real buyer is.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">01</span><span>Which channel should the email campaign hit first, orthodontic practices or amateur sports affiliates, and what split of effort? (e.g. 70/30 ortho)</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Decides which list we build and send to first. A rough percentage is fine.</p>
+      <div class="q-label"><span class="q-num">01</span><span>Walk us through how the program works at a practice today. Who scans the patient, who pays you, who keeps the patient relationship, and what does TruFit do in the middle?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">The exact flow tells us whether the doctor, the office, or a corporate group is the buyer we email.</p>
       <textarea data-q="1" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">02</span><span>In one or two sentences each: who is the buyer in the ortho model, and who is the buyer in the affiliate model? Name the role that signs off.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">This is the person we put in the send list, so be precise about the role.</p>
+      <div class="q-label"><span class="q-num">02</span><span>What does a practice get out of it? In their words, why does an orthodontist say yes, more revenue, patient retention, a service they can't otherwise offer?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">The motive shapes which practices are even a fit, and which signals predict interest.</p>
       <textarea data-q="2" placeholder="Your answer..."></textarea>
     </div>
   </section>
@@ -413,47 +438,47 @@
       <span class="section-num">02</span>
       <span class="section-title">The Account Profile</span>
     </div>
-    <p class="section-note">What a qualified company looks like. Every answer here becomes a filter. Give numbers and named examples.</p>
+    <p class="section-note">What a qualified practice looks like. Every answer here becomes a filter, so give numbers and named examples.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">03</span><span>Name 5 to 10 real orthodontic practices or groups that are perfect fits, current partners or dream targets. List them.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Named accounts are the seed we reverse-engineer the whole list from. Even just practice names and cities.</p>
+      <div class="q-label"><span class="q-num">03</span><span>Name 5 to 10 real practices or groups that are perfect fits, current partners or dream targets, with city if you can.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Named accounts are the seed we reverse-engineer the whole list from.</p>
       <textarea data-q="3" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">04</span><span>What size practice qualifies? Give a number: chairs, doctors, locations, or staff count. Where's the floor and ceiling?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">We filter on employee/location count directly, so a range beats "small to mid-size."</p>
+      <div class="q-label"><span class="q-num">04</span><span>What's the common thread across your best practices? Patient volume, specialty mix, affluent area, sports-heavy community, marketing-savvy owner?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">The shared trait is what we build the lookalike list around.</p>
       <textarea data-q="4" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">05</span><span>Single-location practices, multi-location groups, or DSOs, which converts best, and do you want all three in the list or just one?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Independent practice and DSO are two different list builds with different titles.</p>
+      <div class="q-label"><span class="q-num">05</span><span>What size practice qualifies? Give a number: doctors, chairs, locations, or staff count. Where's the floor and the ceiling?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We filter on employee and location count directly, so a range beats "small to mid-size."</p>
       <textarea data-q="5" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">06</span><span>Does the practice need a specific scanner (iTero, Medit, others) or to be a digital/Invisalign provider for your program to work?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">If yes, this is the single strongest qualifier and we hunt for it specifically.</p>
+      <div class="q-label"><span class="q-num">06</span><span>Solo practice, small group, multi-location, or DSO, which converts best? Do you want all of them in the list, or focus on one type?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Independent practice and DSO are two different list builds with different contacts.</p>
       <textarea data-q="6" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">07</span><span>For the affiliate side, what org types and sports qualify? Rank them, and give a size floor (min players, families, or event participants).</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Hockey, lacrosse, rugby, wrestling, BJJ, football. Which buy, and how big to be worth a send?</p>
+      <div class="q-label"><span class="q-num">07</span><span>Does the practice need a specific intraoral scanner (iTero, Medit, 3Shape) or to be a digital/Invisalign provider for the program to work?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">If yes, this is likely the single strongest qualifier and we hunt for it specifically.</p>
       <textarea data-q="7" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">08</span><span>Name 5 to 10 real leagues, clubs, tournaments, or circuits that would be ideal affiliate partners.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Named orgs let us find the lookalikes. Wins, losses, and dream targets all count.</p>
+      <div class="q-label"><span class="q-num">08</span><span>Is orthodontics the only specialty that fits, or do pediatric dentists and general/cosmetic dentists with scanners work too?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Decides how wide we cast the specialty filter. Pediatric and cosmetic could double the universe or dilute it.</p>
       <textarea data-q="8" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">09</span><span>Geography: which states or metros should we prioritize, and are any off-limits? Same answer or different for each channel?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">A location filter sharpens the list and the send volume per region.</p>
+      <div class="q-label"><span class="q-num">09</span><span>Geography: which states or metros should we prioritize, and are any off-limits? Does a sports-heavy or affluent area matter?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">A location filter sharpens the list and sets send volume per region.</p>
       <textarea data-q="9" placeholder="Your answer..."></textarea>
     </div>
   </section>
@@ -467,27 +492,21 @@
     <p class="section-note">The exact person who receives the email. This determines who lands in the campaign, by literal title.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">10</span><span>List the exact job titles to email at an orthodontic practice. The literal words on LinkedIn or their email signature.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">We match these title strings directly. Owner, Orthodontist, Practice Manager, etc.</p>
+      <div class="q-label"><span class="q-num">10</span><span>Who is the real yes at a practice, the orthodontist/owner, the practice manager, a marketing lead? And who is just a gatekeeper?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We send to the decision-maker and route around the gatekeeper. Tell us which is which.</p>
       <textarea data-q="10" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">11</span><span>List the exact titles to email at an amateur sports org. These orgs have messy titles, so give us every variant you've seen.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">President, Director, Tournament Director, Sponsorship Lead, volunteer roles, anything.</p>
+      <div class="q-label"><span class="q-num">11</span><span>List the exact job titles to target. The literal words on LinkedIn or in their email signature, including every variant.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Orthodontist, Owner, DDS, DMD, Practice Manager, Office Manager. We match these strings directly.</p>
       <textarea data-q="11" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">12</span><span>Is there a gatekeeper we'll hit before the decision-maker? Who, and is it better to email them or go around?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Office managers and front-desk staff can route or block. Tells us who to actually send to.</p>
+      <div class="q-label"><span class="q-num">12</span><span>For multi-location groups or DSOs, does the decision sit at the practice, or move up to a regional or corporate title? Name it.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Director of Operations, VP Clinical, Regional Manager. Determines whether we email the office or HQ.</p>
       <textarea data-q="12" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">13</span><span>For DSOs or multi-location groups, does the decision sit at the practice or move up to a regional/corporate title? Name it.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Determines whether we email the office or the corporate entity.</p>
-      <textarea data-q="13" placeholder="Your answer..."></textarea>
     </div>
   </section>
 
@@ -497,30 +516,30 @@
       <span class="section-num">04</span>
       <span class="section-title">Qualifying Signals</span>
     </div>
-    <p class="section-note">The public tells that an account is ready right now. We score the list on these so the best-fit accounts get emailed first.</p>
+    <p class="section-note">The public tells that a practice is ready right now. We score the list on these so the best-fit accounts get emailed first.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">14</span><span>Think about your last few wins. What was true about that practice or org right before they said yes?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <div class="q-label"><span class="q-num">13</span><span>Think about your last few signed practices. What was true about each one right before they said yes?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       <p class="q-hint">The event before the yes is the trigger we score the whole list against.</p>
+      <textarea data-q="13" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">14</span><span>What would you Google or check to know a practice is a hot prospect today? Be literal about what you'd look for.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">New scanner, new location, new associate, sports-family marketing, elective-services push on the site.</p>
       <textarea data-q="14" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">15</span><span>What would you Google or check to know an ortho practice is a hot prospect today? Be literal about what you'd look for.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">New scanner, new location, new associate, sports-family marketing, elective-services push.</p>
+      <div class="q-label"><span class="q-num">15</span><span>Does a practice already marketing add-on services (whitening, night guards, retainers) signal a better fit? What does growth mode look like to you?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Practices already selling electives have proven appetite for a new revenue line.</p>
       <textarea data-q="15" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">16</span><span>For amateur orgs, what timing windows or signals mean buy now? Registration season, tournament dates, a sponsor hunt?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Timing drives send timing. We want the email to land in the registration window.</p>
+      <div class="q-label"><span class="q-num">16</span><span>Rank your top 3 qualifying signals, most predictive first. If you could only filter on three things, what are they?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Sets the scoring weights so the highest-intent practices get emailed first.</p>
       <textarea data-q="16" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">17</span><span>If you had to rank your top 3 qualifying signals across both channels, most predictive first, what are they?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Sets the scoring weights so the highest-intent accounts get sent to first.</p>
-      <textarea data-q="17" placeholder="Your answer..."></textarea>
     </div>
   </section>
 
@@ -533,21 +552,21 @@
     <p class="section-note">Who to keep out of the campaign. Exclusions protect deliverability and save credits, so be blunt.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">18</span><span>Which practices look like a fit on paper but never convert or never reorder? Describe the pattern.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <div class="q-label"><span class="q-num">17</span><span>Which practices look like a fit on paper but never convert or never reorder? Describe the pattern.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       <p class="q-hint">Anti-ICP. These become hard exclusion rules in the list build.</p>
+      <textarea data-q="17" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">18</span><span>Are there practice types we should never email? Too small, no scanner, mail-order/aligner-only chains, anything that wastes the send.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Keeps the list clean and the domain reputation safe.</p>
       <textarea data-q="18" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">19</span><span>Which amateur orgs are not worth emailing? Too small, wrong sport, no audience, no budget for it to matter?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Keeps the affiliate list from filling up with dead rec leagues.</p>
+      <div class="q-label"><span class="q-num">19</span><span>Any specific accounts or groups to suppress? Existing customers, practices you're already in talks with, or anyone off-limits.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">We suppress these so no current relationship gets a cold email.</p>
       <textarea data-q="19" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">20</span><span>Any accounts, brands, or partners we must exclude? Existing customers, current partners, anyone off-limits or conflicted.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">We suppress these so no one gets a cold email who shouldn't.</p>
-      <textarea data-q="20" placeholder="Your answer..."></textarea>
     </div>
   </section>
 
@@ -557,42 +576,30 @@
       <span class="section-num">06</span>
       <span class="section-title">Sourcing &amp; Email Reachability</span>
     </div>
-    <p class="section-note">Where these accounts cluster, and whether we can actually email them at volume. This makes or breaks a heavy campaign.</p>
+    <p class="section-note">Where these practices cluster, and whether we can actually email them at volume. This makes or breaks a heavy campaign.</p>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">21</span><span>Where do these practices and orgs cluster? Directories, associations, platforms, lists, anywhere you'd look manually.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">AAO, state dental boards, Invisalign provider finder, USA Hockey, US Lacrosse, IBJJF, registration platforms.</p>
+      <div class="q-label"><span class="q-num">20</span><span>Where do these practices cluster? Directories, associations, provider finders, lists, anywhere you'd look manually.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">AAO member directory, state dental boards, Invisalign / iTero provider finder, AAPD. Name what you use.</p>
+      <textarea data-q="20" placeholder="Your answer..."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label"><span class="q-num">21</span><span>Do the owners and decision-makers you want usually have a findable individual email, or just a generic info@ / front-desk inbox?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Critical for a heavy send. Many solo practices route everything through one office inbox, which changes the approach.</p>
       <textarea data-q="21" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">22</span><span>For the contacts you want, do they typically have a findable business email, or just a generic info@ / front-desk inbox?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Critical for a heavy send. Solo practices and youth-club volunteers often have no individual email, which changes the whole approach.</p>
+      <div class="q-label"><span class="q-num">22</span><span>Roughly how many qualified practices do you think exist in your target zone? Your gut on total addressable count is fine.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <p class="q-hint">Tells us whether this is a tight, high-personalization send or a broad volume campaign.</p>
       <textarea data-q="22" placeholder="Your answer..."></textarea>
     </div>
 
     <div class="q">
-      <div class="q-label"><span class="q-num">23</span><span>Is a personal email (Gmail/Yahoo) acceptable to send to for these contacts, or do you only want verified business emails?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Many small-org decision-makers only have a personal address. Affects deliverability strategy and list size.</p>
-      <textarea data-q="23" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">24</span><span>Roughly how many qualified accounts exist in each channel? Your gut on total addressable count is fine.</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Tells us whether this is a tight high-personalization send or a broad volume campaign.</p>
-      <textarea data-q="24" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">25</span><span>What one or two data points, if we had them on every account, would make you trust the list most? (e.g. confirmed scanner, roster size)</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      <p class="q-hint">Tells us which enrichment to prioritize in Clay before a single email goes out.</p>
-      <textarea data-q="25" placeholder="Your answer..."></textarea>
-    </div>
-
-    <div class="q">
-      <div class="q-label"><span class="q-num">26</span><span>Anything we didn't ask that we'd regret not knowing before building the list?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <div class="q-label"><span class="q-num">23</span><span>Anything we didn't ask that we'd regret not knowing before building the list?</span><span class="q-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       <p class="q-hint">Open floor. The thing you know that we don't.</p>
-      <textarea data-q="26" placeholder="Your answer..."></textarea>
+      <textarea data-q="23" placeholder="Your answer..."></textarea>
     </div>
   </section>
 </main>
@@ -618,8 +625,8 @@
 </div>
 
 <script>
-  const TOTAL = 26;
-  const STORAGE_KEY = "trufit_icp_intake_v1";
+  const TOTAL = 23;
+  const STORAGE_KEY = "trufit_icp_intake_v2";
   const textareas = Array.from(document.querySelectorAll("textarea[data-q]"));
   const sections = Array.from(document.querySelectorAll(".section"));
 
@@ -641,6 +648,32 @@
     const k = t.dataset.q;
     if (saved[k]) { t.value = saved[k]; markAnswered(t); }
   });
+
+  // ---- Resume banner: show if returning with saved answers ----
+  function firstUnanswered() {
+    return textareas.find(t => t.value.trim().length === 0) || null;
+  }
+  (function setupResume() {
+    const banner = document.getElementById("resumeBanner");
+    const answered = textareas.filter(t => t.value.trim().length > 0).length;
+    if (answered > 0 && answered < TOTAL) {
+      document.getElementById("resumeProgress").textContent =
+        "You've answered " + answered + " of " + TOTAL + " so far.";
+      banner.hidden = false;
+    }
+    document.getElementById("resumeBtn").addEventListener("click", () => {
+      const target = firstUnanswered();
+      if (target) {
+        target.closest(".q").scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => target.focus({ preventScroll: true }), 450);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      banner.style.transition = "opacity 0.4s ease";
+      banner.style.opacity = "0";
+      setTimeout(() => { banner.hidden = true; }, 420);
+    });
+  })();
 
   function markAnswered(t) {
     const card = t.closest(".q");
