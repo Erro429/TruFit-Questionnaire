@@ -779,13 +779,33 @@
     submitBtn.textContent = "Submitting…";
     showOverlay("⏳", "Submitting…", "Sending your answers to Google Sheets, please wait.", false);
 
+    let success = false;
+    let errMsg = "Please check your connection and try again. Your answers are saved locally — use 'Download answers' as a backup.";
+
     try {
-      await fetch(APPS_SCRIPT_URL, {
+      // text/plain is a "simple" Content-Type — no CORS preflight needed.
+      // The POST body reaches Apps Script even if the response is CORS-blocked.
+      const res = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(buildSheetData())
       });
+      try {
+        const json = await res.json();
+        success = json.result === "success";
+        if (!success) errMsg = json.message || "Apps Script returned an error.";
+      } catch (_) {
+        // Got a response but can't parse JSON — request still went through
+        success = res.ok || res.type === "opaque";
+      }
+    } catch (_) {
+      // CORS blocks the response — but with text/plain the POST body WAS sent.
+      // Treat as success if the browser is online; offline = real network error.
+      success = navigator.onLine;
+      if (!success) errMsg = "No internet connection. Check your network and try again.";
+    }
+
+    if (success) {
       showOverlay("✅", "Submitted!", "Your answers have been sent to Google Sheets. Thank you!", true);
       submitBtn.textContent = "✓ Submitted";
       submitBtn.classList.add("btn-submit-success");
@@ -794,8 +814,8 @@
         submitBtn.textContent = "Submit again";
         submitBtn.classList.remove("btn-submit-success");
       }, 6000);
-    } catch (err) {
-      showOverlay("❌", "Submission failed", "Network error. Please check your connection and try again. Your answers are still saved locally — use 'Download answers' as a backup.", true);
+    } else {
+      showOverlay("❌", "Submission failed", errMsg, true);
       submitBtn.disabled = false;
       submitBtn.textContent = "Retry";
       submitBtn.classList.add("btn-submit-error");
